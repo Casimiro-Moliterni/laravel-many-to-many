@@ -9,6 +9,7 @@ use App\Models\Type;
 use Illuminate\Support\Str;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\Storage;
+use App\Models\Technology;
 class ProjectController extends Controller
 {
     /**
@@ -32,7 +33,8 @@ class ProjectController extends Controller
     {
         //
         $types = Type::all();
-         return view('admin.projects.create',compact('types'));
+        $technologies = Technology::all();
+         return view('admin.projects.create',compact('types','technologies'));
     }
 
     /**
@@ -51,7 +53,8 @@ class ProjectController extends Controller
               'summary'=>'nullable|min:10',
               'thumb' => 'nullable|image|max:256',
               'client_name'=>'nullable|min:5|max:255',
-              'type_id'=>'nullable|exists:types,id'
+              'type_id'=>'nullable|exists:types,id',
+              'technologies'=>'nullable|exists:technologies,id'
             ]
             );
         $formData=$request->all();
@@ -63,6 +66,9 @@ class ProjectController extends Controller
         $newProject->fill($formData);
         $newProject->slug= Str::slug($newProject->name, '-');
         $newProject->save();
+        if($request->has('technologies')){
+            $newProject->technologies()->attach($formData['technologies']);
+        }
         return redirect()->route('admin.projects.show',['project'=>$newProject->slug]);
     }
 
@@ -75,7 +81,7 @@ class ProjectController extends Controller
     public function show(Project $project)
     {
         //
-        dd($project->technologies);
+        // dd($project->technologies);
         return view('admin.projects.show',compact('project'));
     }
 
@@ -89,7 +95,8 @@ class ProjectController extends Controller
     {
         //
         $types= Type::all();
-        return view(('admin.projects.edit'),compact('project','types'));
+        $technologies= Technology::all();
+        return view(('admin.projects.edit'),compact('project','types','technologies'));
     }
 
     /**

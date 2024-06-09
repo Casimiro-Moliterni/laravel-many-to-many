@@ -7,8 +7,18 @@
     @if ($project->type)
         <div>
             <strong>Types:</strong>{{ $project->type->name }}
-        </div> 
+        </div>
     @endif
+    <div>
+        <strong>Technologies:</strong>
+        @if (count($project->Technologies))
+            @foreach ($project->technologies as $technology)
+                {{ $technology->name }}@if (!$loop->last),@endif
+            @endforeach        
+            @else
+                none technology
+        @endif
+    </div>
     @if ($project->thumb)
         <div>
             <img src="{{ asset('storage/' . $project->thumb) }}" alt="{{ $project->name }}">
