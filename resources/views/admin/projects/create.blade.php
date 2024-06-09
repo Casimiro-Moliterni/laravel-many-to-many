@@ -22,7 +22,7 @@
             <div class="mb-3">
                 <label for="type_id" class="form-label">Types</label>
                 <select class="form-select" aria-label="Default select example" id="type_id" name="type_id">
-                    <option selected>Open this select menu</option>
+                    <option value="">Open this select menu</option>
                     @foreach ($types as $type)
                         <option @selected($type->id == old('type_id')) value="{{ $type->id }}">{{ $type->name }}</option>
                     @endforeach
