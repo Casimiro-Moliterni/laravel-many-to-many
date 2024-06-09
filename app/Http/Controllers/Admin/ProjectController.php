@@ -120,7 +120,8 @@ class ProjectController extends Controller
               'summary'=>'nullable|min:10',
               'thumb' => 'nullable|image|max:256',
               'client_name'=>'nullable|min:5|max:255',
-              'type_id'=>'nullable|exists:types,id'
+              'type_id'=>'nullable|exists:types,id',
+              'technologies'=>'nullable|exists:technologies,id'
             ]
             );
         $formData=$request->all();
@@ -133,6 +134,11 @@ class ProjectController extends Controller
           }
         $project->slug= Str::slug($formData['name'], '-');
         $project->update($formData);
+        if($request->has('technologies')){
+            $project->technologies()->sync($formData['technologies']);
+        } else {
+            $project->technologies()->sync([]);
+        }
         return redirect()->route('admin.projects.show',['project'=>$project->slug]);
 
     }

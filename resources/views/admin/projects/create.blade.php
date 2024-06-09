@@ -28,6 +28,7 @@
                     @endforeach
                 </select>
             </div>
+            <h5>Technologies</h5>
             @foreach ($technologies as $technology)
                 <div class="mb-3">
                     <input class="form-check-input " @checked(in_array($technology->id , old('technologies',[]))) type="checkbox" value="{{ $technology->id }}" id="technology-{{ $technology->id }}" name=" technologies[] ">
