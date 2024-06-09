@@ -1,0 +1,20 @@
+#sidebarMenu{
+   width: 200px;
+   &:hover{
+    transition-duration:1s ;
+    width: 400px;
+    height: 100%;
+   }
+    .nav-link{
+        &{
+           color: white;
+           
+           &:hover{
+            background-color:rgba(#6C757D, 0.6);
+           }
+        }
+    }
+}
+
+
+

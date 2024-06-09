@@ -1,0 +1,25 @@
+.my_arrow_show {
+    i {
+        background-color: inherit;
+        color: black;
+        font-size: 35px;
+        font-weight: 700;
+        transform: rotate(-90deg);
+        padding-bottom: 10px;
+        padding-left: 2px;
+        border-left: 2px solid black;
+        transition: 0.6s;
+
+        &:hover {
+            color: blue;
+            border-left: 2px solid blue;
+            transition: 0.6s;
+        }
+    }
+}
+
+img{
+  height: 300px;
+  width: 600px;
+  object-fit: cover;
+}

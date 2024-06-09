@@ -1,0 +1,9 @@
+table{
+    .my_tr_active{
+       
+            &:hover td{
+                background-color: rgba($color: #6C757D, $alpha: 0.5);
+                cursor: pointer;
+            }
+    }
+}

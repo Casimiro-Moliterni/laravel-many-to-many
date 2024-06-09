@@ -1,0 +1,13 @@
+@use './partials/projects/index';
+@use './partials/projects/show';
+@use './partials/projects/edit';
+@use './partials/projects/create';
+@use './partials/dashboard';
+
+@import '~bootstrap/scss/bootstrap';
+
+a{
+    text-decoration: none;
+}
+
+
